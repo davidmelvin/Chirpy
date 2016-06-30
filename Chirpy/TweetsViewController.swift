@@ -30,7 +30,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tweetsTableView.insertSubview(refreshControl, atIndex: 0)
         
         refreshControlAction(refreshControl)
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -55,19 +55,19 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Tell the refreshControl to stop spinning
         refreshControl.endRefreshing()
         
-       
+        
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tweets.count
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let tweetCell = tweetsTableView.dequeueReusableCellWithIdentifier("tweetCellReuseIdentifier") as! TweetTableViewCell
         tweetCell.tweet = tweets[indexPath.row]
         return tweetCell
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,15 +79,26 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-
-    /*
+    
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "tweetDetailSegue" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tweetsTableView.indexPathForCell(cell)
+            let tweet = tweets[indexPath!.row]
+            let destinationViewController = segue.destinationViewController as! TweetDetailsViewController
+            destinationViewController.tweet = tweet
+        }
+        else {
+            print("different segue identifier")
+        }
+        
     }
-    */
-
+    
+    
 }

@@ -57,6 +57,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func retweet(id: String, success: () -> (), failure: (NSError) -> ()) {
+        POST("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, reponse: AnyObject?) in
+            print("successful retweet?")
+            success()
+            }, failure: {(task: NSURLSessionDataTask?, error: NSError) in
+                failure(error)
+        })
+    }
+    
     func homeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> ()) {
         GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             

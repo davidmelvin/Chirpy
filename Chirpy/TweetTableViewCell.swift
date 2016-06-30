@@ -12,28 +12,32 @@ class TweetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var relativeTimestampLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var screenameLabel: UILabel!
+    @IBOutlet weak var screennameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
-    @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var retweetsLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var likesLabel: UILabel!
     
     var tweet : Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
             userNameLabel.text = tweet.user!.name
-            screenameLabel.text = tweet.user!.screenname
+            screennameLabel.text = tweet.user!.screenname
             profileImage.setImageWithURL(tweet.user!.profileImageURL!)
             relativeTimestampLabel.text = tweet.timestamp
-            favoritesLabel.text =  "\(tweet.favoritesCount!)"
+            likesLabel.text =  "\(tweet.favoritesCount!)"
             retweetsLabel.text = "\(tweet.retweetsCount!)"
             
         }
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
-        
+        TwitterClient.sharedInstance.retweet(tweet.tweetID!, success: { () in
+            print(self.tweet.tweetID)
+        }) { (error: NSError) in
+                print("Retweet error: \(error)")
+        }
     }
     
     

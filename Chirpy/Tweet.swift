@@ -9,37 +9,6 @@
 import UIKit
 import SwiftDate
 
-//class TweetOld: NSObject {
-//    var text: NSString?
-//    var timestamp: NSDate?
-//    var retweetCount: Int = 0
-//    var favoritesCount: Int = 0
-//    
-//    init(dictionary: NSDictionary) {
-//        text = dictionary["text"] as? String
-//        retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
-//        favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
-//        
-//        let timestampString = dictionary["created_at"] as? String
-//        if let timestampString = timestampString {
-//            let formatter = NSDateFormatter()
-//            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-//            timestamp = formatter.dateFromString(timestampString)
-//        }
-//    }
-//    
-//    class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet]{
-//        var tweets = [Tweet]()
-//    
-//        for dictionary in dictionaries {
-//            let tweet = Tweet(dictionary: dictionary)
-//            tweets.append(tweet)
-//        }
-//        
-//        return tweets
-//    }
-//}
-
 class Tweet : NSObject {
     static let TextKey = "text"
     static let RetweetKey = "retweet_count"
@@ -47,6 +16,7 @@ class Tweet : NSObject {
     static let TimestampKey = "created_at"
     static let TimestapDateFormat = "EEE MMM d HH:mm:ss Z y"
     static let UserKey = "user"
+    static let IDKey = "id_str"
     
     
     private var tweetDictionary: NSMutableDictionary!
@@ -65,34 +35,7 @@ class Tweet : NSObject {
     class func tweetsFromArray( tweetsDictionaries: [NSDictionary]) -> [Tweet] {
         return tweetsDictionaries.map( { Tweet(dictionary: $0) } )
     }
-    
-//    class func tweetsWithArrayVerbose(dictionaries: [NSDictionary]) -> [Tweet]{
-//        var tweets : [Tweet] = []
-//        
-//        for dictionary in dictionaries {
-//            let tweet = Tweet(dictionary: dictionary)
-//            tweets.append(tweet)
-//        }
-//        
-//        return tweets
-//    }
-//    var screenname : String? {
-//        get {
-//            return tweetDictionary[Tweet.UserKey]![Tweet.ScreennameKey] as? String
-//        }
-//        set(arg) {
-//            tweetDictionary[Tweet.UserKey][Tweet.ScreennameKey] = arg
-//        }
-//    }
-//    
-//    var text : String? {
-//        get {
-//            return tweetDictionary[Tweet.TextKey] as? String
-//        }
-//        set(arg) {
-//            tweetDictionary[Tweet.TextKey] = arg
-//        }
-//    }
+
     var user : User? {
         get {
             return User(dictionary: tweetDictionary[Tweet.UserKey] as! NSDictionary)
@@ -145,6 +88,28 @@ class Tweet : NSObject {
         }
         set(arg) {
             tweetDictionary[Tweet.TimestampKey] = arg
+        }
+    }
+    var absoluteTimestamp : String? {
+        get {
+            let timestampUnformatted = tweetDictionary[Tweet.TimestampKey] as? String
+            if let timestampUnformatted = timestampUnformatted {
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+                return  formatter.dateFromString(timestampUnformatted)!.toString()
+            }
+            else {
+                return "long ago"
+            }
+        }
+        set(arg) {
+            tweetDictionary[Tweet.TimestampKey] = arg
+        }
+    }
+    
+    var tweetID : String? {
+        get {
+            return tweetDictionary[Tweet.IDKey] as? String
         }
     }
 
