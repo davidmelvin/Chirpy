@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (User.currentUser != nil) {
             //go to tweets
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+            let vc = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController")
             window?.rootViewController = vc
             
             

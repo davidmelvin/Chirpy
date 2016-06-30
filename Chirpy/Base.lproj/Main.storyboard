@@ -31,12 +31,31 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="sne-p1-6Jc" kind="presentation" identifier="loginSegue" id="zxg-02-33P"/>
+                        <segue destination="XBK-Lv-5No" kind="presentation" identifier="loginSegue" id="c7P-XF-uCs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="259.5" y="338.5"/>
+            <point key="canvasLocation" x="-276.5" y="364.5"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="mcc-QN-ibL">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" id="XBK-Lv-5No" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="oDt-ee-10O">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="sne-p1-6Jc" kind="relationship" relationship="viewControllers" id="czn-tS-Ad9"/>
+                        <segue destination="k9r-AA-gAC" kind="relationship" relationship="viewControllers" id="3AJ-lg-J1W"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1HY-25-WBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="190.5" y="364.5"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="Ciu-ig-sH3">
@@ -352,10 +371,10 @@
             </objects>
             <point key="canvasLocation" x="1670.5" y="338.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="Ai1-qg-KDM">
             <objects>
-                <viewController id="otp-9g-vQK" sceneMemberID="viewController">
+                <viewController id="otp-9g-vQK" customClass="ProfileViewController" customModule="Chirpy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GBB-fF-E8t"/>
                         <viewControllerLayoutGuide type="bottom" id="Wau-th-4XH"/>
@@ -400,12 +419,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="333" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1C-6n-OrI">
-                                <rect key="frame" x="167" y="413" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-oE-ce4">
                                 <rect key="frame" x="50" y="413" width="114" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -424,19 +437,49 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="222" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geb-Xt-QZN">
+                                <rect key="frame" x="45" y="434" width="30" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tweets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYv-FV-Px6">
+                                <rect key="frame" x="89" y="459" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="333" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1C-6n-OrI">
+                                <rect key="frame" x="167" y="413" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YW3-8H-HlU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="followersCountLabel" destination="P1C-6n-OrI" id="rZV-qK-Rbo"/>
+                        <outlet property="followingCountLabel" destination="Aln-iy-Peb" id="gar-Ry-Wsd"/>
+                        <outlet property="locationLabel" destination="4iS-Q1-iGl" id="OLc-UG-lc9"/>
+                        <outlet property="screennameLabel" destination="tAw-Kq-Ytd" id="U4r-f8-HUc"/>
+                        <outlet property="tweetsCountLabel" destination="Geb-Xt-QZN" id="7jb-TC-yHj"/>
+                        <outlet property="urlLabel" destination="LMW-cX-s6h" id="CBq-fC-rEd"/>
+                        <outlet property="userNameLabel" destination="OmP-xK-7BA" id="xxH-jf-WUa"/>
+                        <outlet property="userTaglineLabel" destination="Z6f-cE-c4t" id="Edt-pX-aia"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qul-cJ-SdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2184.5" y="338.5"/>
+            <point key="canvasLocation" x="1243.5" y="1091.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="aI4-QZ-bYa">
             <objects>
                 <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="sne-p1-6Jc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="D9i-Dd-EMP"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uld-jA-l97">
@@ -450,7 +493,27 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOO-fo-CUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782.5" y="338.5"/>
+            <point key="canvasLocation" x="696.5" y="328.5"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ELD-Hw-dsM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k9r-AA-gAC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eaN-Ox-rBX"/>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0GH-GE-xmS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="otp-9g-vQK" kind="relationship" relationship="rootViewController" id="gjV-cJ-Hl6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGT-nm-BSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="674.5" y="1100.5"/>
         </scene>
     </scenes>
     <resources>
