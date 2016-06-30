@@ -8,26 +8,64 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tweets : [Tweet]!
+    @IBOutlet weak var tweetsTableView: UITableView!
+    
+    
+    var tweets : [Tweet] = [] {
+        didSet {
+            self.tweetsTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tweetsTableView.delegate = self
+        tweetsTableView.dataSource = self
+        
+        // Initialize a UIRefreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tweetsTableView.insertSubview(refreshControl, atIndex: 0)
+        
+        refreshControlAction(refreshControl)
+
+        // Do any additional setup after loading the view.
+    }
+    
+    // Makes a network request to get updated data
+    // Updates the tableView with the new data
+    // Hides the RefreshControl
+    func refreshControlAction(refreshControl: UIRefreshControl) {
         
         TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
             
             //set up table view
+            //Tweet.tweetsFromArray(tweets)
             
             self.tweets = tweets
-//            for tweet in tweets {
-//                print(tweet.text)
-//            }
+            
         }) { (error: NSError) in
-                print("hometimeline error: \(error.localizedDescription)")
+            print("hometimeline error: \(error.localizedDescription)")
         }
+        
+        self.tweetsTableView.reloadData()
+        
+        // Tell the refreshControl to stop spinning
+        refreshControl.endRefreshing()
+        
+       
+    }
 
-        // Do any additional setup after loading the view.
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.tweets.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let tweetCell = tweetsTableView.dequeueReusableCellWithIdentifier("tweetCellReuseIdentifier") as! TweetTableViewCell
+        tweetCell.tweet = tweets[indexPath.row]
+        return tweetCell
     }
 
     override func didReceiveMemoryWarning() {

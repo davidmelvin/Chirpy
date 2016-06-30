@@ -50,21 +50,18 @@ class TwitterClient: BDBOAuth1SessionManager {
                 }, failure: { (error: NSError) in
                     self.loginFailure?(error)
             })
-            self.loginSucess?()
             
         }) { (error: NSError!) in
             print("Handle open Url error: \(error.localizedDescription)")
             self.loginFailure?(error)
         }
-
-        
     }
     
     func homeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> ()) {
         GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             
             let tweetDictionaries = response as! [NSDictionary]
-            let tweets = Tweet.tweetsWithArray(tweetDictionaries)
+            let tweets = Tweet.tweetsFromArray(tweetDictionaries)
             success(tweets)
             
             }, failure:  {(task: NSURLSessionDataTask?, error: NSError) in
