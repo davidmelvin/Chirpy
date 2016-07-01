@@ -94,8 +94,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let destinationViewController = segue.destinationViewController as! TweetDetailsViewController
             destinationViewController.tweet = tweet
         }
-        else {
-            print("different segue identifier")
+        else if segue.identifier == "feedProfileSegue"{
+            let button = sender as! UIButton
+            let cell = button.superview?.superview as! UITableViewCell
+            let indexPath = tweetsTableView.indexPathForCell(cell)
+            let user = tweets[indexPath!.row].user
+            let destinationViewController = segue.destinationViewController as! ProfileViewController
+            destinationViewController.user = user
+
         }
         
     }

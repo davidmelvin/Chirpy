@@ -95,15 +95,6 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func onProfileButton(sender: AnyObject) {
-        let button = sender as? UIButton
-        let view = button?.superview
-        let cell = view?.superview as? TweetTableViewCell
-        let user = cell!.tweet.user
-        print("user: \(user)")
-        
-    }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

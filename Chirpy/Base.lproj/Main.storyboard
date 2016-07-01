@@ -83,7 +83,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HG-f1-Xqf">
                                                     <rect key="frame" x="8" y="4" width="37" height="39"/>
                                                     <connections>
-                                                        <action selector="onProfileButton:" destination="ZAE-2f-Wqj" eventType="touchUpInside" id="ALP-Lz-hsK"/>
+                                                        <segue destination="otp-9g-vQK" kind="show" identifier="feedProfileSegue" id="18H-HL-Ne0"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gI-dV-vA5">
@@ -533,4 +533,7 @@
         <image name="reply-action_0" width="65" height="72"/>
         <image name="retweet-action" width="75" height="72"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="18H-HL-Ne0"/>
+    </inferredMetricsTieBreakers>
 </document>
