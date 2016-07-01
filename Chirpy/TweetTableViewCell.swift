@@ -9,7 +9,7 @@
 import UIKit
 
 class TweetTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var relativeTimestampLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var screennameLabel: UILabel!
@@ -29,15 +29,79 @@ class TweetTableViewCell: UITableViewCell {
             likesLabel.text =  "\(tweet.favoritesCount!)"
             retweetsLabel.text = "\(tweet.retweetsCount!)"
             
+        
+        }
+        
+    }
+    
+    
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        print("tweetID: \(tweet.tweetID)")
+        print("isretweeted: \(tweet.isRetweeted)")
+        
+        if (tweet.isRetweeted == false) {
+            TwitterClient.sharedInstance.retweet(tweet.tweetID!, params: nil, success: { () in
+                print("Successful retweet")
+                
+                self.tweet.isRetweeted = true
+                self.tweet.retweetsCount! += 1
+                self.retweetsLabel.text = "\(self.tweet.retweetsCount!)"
+                
+                }, failure: { (error) in
+                    print(error)
+            })
+        }
+        else {
+            TwitterClient.sharedInstance.unretweet(tweet.tweetID!, params: nil, success: { () in
+                
+                print("successful unretweet")
+                self.tweet.isRetweeted = false
+                self.tweet.retweetsCount! -= 1
+                self.retweetsLabel.text = "\(self.tweet.retweetsCount!)"
+                
+                
+                }, failure: { (error) in
+                    print(error)
+            })
         }
     }
     
-    @IBAction func onRetweet(sender: AnyObject) {
-        TwitterClient.sharedInstance.retweet(tweet.tweetID!, success: { () in
-            print(self.tweet.tweetID)
-        }) { (error: NSError) in
-                print("Retweet error: \(error)")
+    @IBAction func onFavorite(sender: UIButton) {
+        
+        print("isFavorited: \(tweet.isFavorited)")
+        if (tweet.isFavorited == false) {
+            TwitterClient.sharedInstance.favorite(tweet.tweetID!, params: nil, success: { () in
+                    self.tweet.isFavorited = true
+                    self.tweet.favoritesCount! += 1
+                    self.likesLabel.text = "\(self.tweet.favoritesCount!)"
+                }, failure: { (error) in
+                    print(error)
+            })
+        
         }
+        else {
+            sender.setImage(UIImage(named: "like-action"), forState: .Normal)
+
+            TwitterClient.sharedInstance.unfavorite(tweet.tweetID!, params: nil, success: { () in
+                self.tweet.isFavorited = false
+                self.tweet.favoritesCount! -= 1
+                self.likesLabel.text = "\(self.tweet.favoritesCount!)"
+                
+                }, failure: { (error) in
+                    print(error)
+            })
+            
+        }
+    }
+    
+    @IBAction func onProfileButton(sender: AnyObject) {
+        let button = sender as? UIButton
+        let view = button?.superview
+        let cell = view?.superview as? TweetTableViewCell
+        let user = cell!.tweet.user
+        print("user: \(user)")
+        
     }
     
     
@@ -45,11 +109,11 @@ class TweetTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

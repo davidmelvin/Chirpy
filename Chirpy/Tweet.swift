@@ -11,17 +11,19 @@ import SwiftDate
 
 class Tweet : NSObject {
     static let TextKey = "text"
-    static let RetweetKey = "retweet_count"
+    static let RetweetCountKey = "retweet_count"
     static let FavoritesKey = "favourites_count"
     static let TimestampKey = "created_at"
     static let TimestapDateFormat = "EEE MMM d HH:mm:ss Z y"
     static let UserKey = "user"
     static let IDKey = "id_str"
+    static let isRetweetedKey = "retweeted"
+    static let isFavoritedKey = "favorited"
     
     
     private var tweetDictionary: NSMutableDictionary!
     
-    private init(dictionary: NSDictionary) {
+    init(dictionary: NSDictionary) {
         super.init()
         tweetDictionary = NSMutableDictionary(dictionary: dictionary)
         //tweetDictionary = dictionary as! NSMutableDictionary
@@ -55,10 +57,10 @@ class Tweet : NSObject {
     
     var retweetsCount : Int? {
         get {
-            return (tweetDictionary[Tweet.RetweetKey] as? Int) ?? 0
+            return (tweetDictionary[Tweet.RetweetCountKey] as? Int) ?? 0
         }
         set(arg) {
-            tweetDictionary[Tweet.RetweetKey] = arg
+            tweetDictionary[Tweet.RetweetCountKey] = arg
         }
     }
     
@@ -110,6 +112,24 @@ class Tweet : NSObject {
     var tweetID : String? {
         get {
             return tweetDictionary[Tweet.IDKey] as? String
+        }
+    }
+    
+    var isRetweeted : Bool? {
+        get {
+            return (tweetDictionary[Tweet.isRetweetedKey] as? Bool) ?? false
+        }
+        set(arg) {
+            tweetDictionary[Tweet.isRetweetedKey] = arg
+        }
+    }
+    
+    var isFavorited : Bool? {
+        get {
+            return (tweetDictionary[Tweet.isFavoritedKey] as? Bool) ?? false
+        }
+        set(arg) {
+            tweetDictionary[Tweet.isFavoritedKey] = arg
         }
     }
 

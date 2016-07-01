@@ -22,13 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController")
             window?.rootViewController = vc
-            
-            
-            
-            print("there is a current user")
-        }
-        else {
-            print("there is no current user")
         }
         
         NSNotificationCenter.defaultCenter().addObserverForName(User.userDidLogoutNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) in

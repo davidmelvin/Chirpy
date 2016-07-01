@@ -40,8 +40,62 @@ class TweetDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onRetweetDetail(sender: AnyObject) {
+        if (tweet.isRetweeted == false) {
+            TwitterClient.sharedInstance.retweet(tweet.tweetID!, params: nil, success: { () in
+                print("Successful retweet")
+                
+                self.tweet.isRetweeted = true
+                self.tweet.retweetsCount! += 1
+                self.retweetCountLabel.text = "\(self.tweet.retweetsCount!)"
+                
+                }, failure: { (error) in
+                    print(error)
+            })
+        }
+        else {
+            TwitterClient.sharedInstance.unretweet(tweet.tweetID!, params: nil, success: { () in
+                
+                print("successful unretweet")
+                self.tweet.isRetweeted = false
+                self.tweet.retweetsCount! -= 1
+                self.retweetCountLabel.text = "\(self.tweet.retweetsCount!)"
+                
+                
+                }, failure: { (error) in
+                    print(error)
+            })
+        }
+    }
+    
+    @IBAction func onFavoriteDetail(sender: AnyObject) {
+        if (tweet.isFavorited == false) {
+            TwitterClient.sharedInstance.favorite(tweet.tweetID!, params: nil, success: { () in
+                self.tweet.isFavorited = true
+                self.tweet.favoritesCount! += 1
+                self.likesCountLabel.text = "\(self.tweet.favoritesCount!)"
+                }, failure: { (error) in
+                    print(error)
+            })
+            
+        }
+        else {
+            sender.setImage(UIImage(named: "like-action"), forState: .Normal)
+            
+            TwitterClient.sharedInstance.unfavorite(tweet.tweetID!, params: nil, success: { () in
+                self.tweet.isFavorited = false
+                self.tweet.favoritesCount! -= 1
+                self.likesCountLabel.text = "\(self.tweet.favoritesCount!)"
+                
+                }, failure: { (error) in
+                    print(error)
+            })
+            
+        }
+    }
     
     
+
     /*
      // MARK: - Navigation
      
