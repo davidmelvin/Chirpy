@@ -15,26 +15,14 @@ class User: NSObject {
     static let UserNameKey = "name"
     static let ProfileImageUrlKey = "profile_image_url_https"
     static let TaglineKey = "description"
+    static let followersCountKey = "followers_count"
+    static let followingCountKey = "friends_count"
+    static let locationKey = "location"
+    static let profileBanneyKey = "profile_banner_url"
+    static let tweetCountKey = "statuses_count"
+    static let userIDKey = "id_str"
     
-    //    var name: NSString?
-    //    var screenname: NSString?
-    //    var profileUrl: NSURL?
-    //    var tagline: NSString?
-    //
-    //    var dictionary : NSDictionary?
     var mutDictionary: NSMutableDictionary!
-    //
-    //    init(dictionary: NSDictionary) {
-    //        self.dictionary = dictionary
-    //        name = dictionary["name"] as? String
-    //        screenname = dictionary["screen_name"] as? String
-    //
-    //        let profileURLString = dictionary["profile_image_url_https"] as? String
-    //        if let profileURLString = profileURLString {
-    //            profileUrl = NSURL(string: profileURLString)
-    //        }
-    //        tagline = dictionary["description"] as? String
-    //    }
     
     convenience override init() {
         self.init( dictionary: NSMutableDictionary())
@@ -46,6 +34,12 @@ class User: NSObject {
     }
     
     static var _currentUser : User?
+    
+    var id : String? {
+        get {
+            return mutDictionary[User.userIDKey] as? String
+        }
+    }
     
     var name : String? {
         get {
@@ -87,7 +81,51 @@ class User: NSObject {
             mutDictionary[User.ProfileImageUrlKey] = arg
         }
     }
+    
+    var profileBannerImageURL : NSURL? {
+        get {
+            if let string = mutDictionary[User.profileBanneyKey] as? String {
+                return NSURL(string: string)
+            }
+            else {
+                //use a default background image
+                return NSURL(string: "https://pbs.twimg.com/profile_banners/6253282/1431474710/mobile_retina")
+            }
+        }
+    }
+    
+    var location : String? {
+        get {
+            return mutDictionary[User.locationKey] as? String
+        }
         
+    }
+    
+    var followersCount : Int {
+        get {
+            return (mutDictionary[User.followersCountKey] as? Int)!
+        }
+    }
+    
+    var follwingCount : Int {
+        get {
+            return (mutDictionary[User.followingCountKey] as? Int)!
+        }
+    }
+    
+    var tweetCount : Int {
+        get {
+            return (mutDictionary[User.tweetCountKey] as? Int)!
+        }
+    }
+    
+//    var tweets : [Tweet]? {
+//        get {
+//            var tweetArray : [Tweet] = []
+//                        return tweetArray
+//        }
+//    }
+    
     class var currentUser : User? {
         get {
             if _currentUser == nil {

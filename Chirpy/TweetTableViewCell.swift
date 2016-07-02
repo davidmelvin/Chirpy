@@ -18,12 +18,13 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var retweetsLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
+        
     
     var tweet : Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
             userNameLabel.text = tweet.user!.name
-            screennameLabel.text = tweet.user!.screenname
+            screennameLabel.text = "@\(tweet.user!.screenname!)"
             profileImage.setImageWithURL(tweet.user!.profileImageURL!)
             relativeTimestampLabel.text = tweet.timestamp
             likesLabel.text =  "\(tweet.favoritesCount!)"
@@ -33,8 +34,6 @@ class TweetTableViewCell: UITableViewCell {
         }
         
     }
-    
-    
     
     @IBAction func onRetweet(sender: AnyObject) {
         print("tweetID: \(tweet.tweetID)")

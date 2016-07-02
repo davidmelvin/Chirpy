@@ -8,37 +8,68 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var screennameLabel: UILabel!
     @IBOutlet weak var userTaglineLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileBannerImageView: UIImageView!
+    
+    @IBOutlet weak var profileTweetsTableView: UITableView!
     
     var user : User?
+    //var tweets : [Tweet]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.profileTweetsTableView.delegate = self
+        self.profileTweetsTableView.dataSource = self
+        self.profileTweetsTableView.estimatedRowHeight = 100
+        self.profileTweetsTableView.rowHeight = UITableViewAutomaticDimension
         
         if user == nil {
             user = User.currentUser
         }
         
         userNameLabel.text = user?.name
-        screennameLabel.text = user?.screenname
+        screennameLabel.text = "@\(user!.screenname!)"
         userTaglineLabel.text = user?.tagline
-        
-
-        // Do any additional setup after loading the view.
+        tweetsCountLabel.text = "\(user!.tweetCount)"
+        followersCountLabel.text = "\(user!.followersCount)"
+        followingCountLabel.text = "\(user!.follwingCount)"
+        locationLabel.text = user!.location
+        profileImageView.setImageWithURL((user?.profileImageURL)!)
+        profileBannerImageView.setImageWithURL((user?.profileBannerImageURL)!)
+        //!! what if there is no URL?
+  
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (user?.tweetCount)!
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = profileTweetsTableView.dequeueReusableCellWithIdentifier("profileTweetCellReuseIdentifier", forIndexPath: indexPath) as! TweetTableViewCell
+        
+        TwitterClient.sharedInstance.userTimeline(user!.id!, success: { (tweets: [Tweet]) in
+            cell.tweet = tweets[indexPath.row]
+        }) { (error: NSError) in
+            print(error)
+        }
+
+
+        return cell
     }
     
 

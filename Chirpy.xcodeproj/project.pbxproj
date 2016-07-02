@@ -62,6 +62,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		157C022E1D26EC5F00A8D6AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15BFB2101D24764800E77C90 /* TweetTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		15F1B0B91D21C63100180E52 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				15F1B0DF1D21E7DA00180E52 /* API */,
+				157C022E1D26EC5F00A8D6AB /* Views */,
 				15F1B0DA1D21D75D00180E52 /* Models */,
 				15F1B0D71D21C6DF00180E52 /* View Controllers */,
 				15F1B0C51D21C63100180E52 /* AppDelegate.swift */,
@@ -100,7 +109,6 @@
 			children = (
 				15F1B0D81D21C6FB00180E52 /* LoginViewController.swift */,
 				15F1B0E21D2330F000180E52 /* TweetsViewController.swift */,
-				15BFB2101D24764800E77C90 /* TweetTableViewCell.swift */,
 				15BFB2121D24A87400E77C90 /* TweetDetailsViewController.swift */,
 				157C020C1D2581AF00A8D6AB /* ProfileViewController.swift */,
 			);

@@ -101,7 +101,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let user = tweets[indexPath!.row].user
             let destinationViewController = segue.destinationViewController as! ProfileViewController
             destinationViewController.user = user
-
         }
         
     }
