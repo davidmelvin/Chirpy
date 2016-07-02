@@ -102,7 +102,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func unfavorite(tweetId: String, params: NSDictionary?, success: () -> (), failure: (error: NSError?) -> () ){
         
-        
         POST("1.1/favorites/destroy.json?id=\(tweetId)", parameters: params, success: { (task: NSURLSessionDataTask, reponse: AnyObject?) in
             success()
             print("unfavorite POST complete")
@@ -112,6 +111,16 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print(error)
                 
         })
+    }
+    
+    func makeTweet(message: String, success: (() -> ()), failure: (error: NSError?) -> () ){
+        var dict = NSDictionary()
+        dict = ["status": message]
+        POST("1.1/statuses/update.json", parameters: dict, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            success()
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+            failure(error: error)
+        }
     }
     
     func homeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> ()) {

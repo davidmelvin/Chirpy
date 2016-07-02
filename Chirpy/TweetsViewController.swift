@@ -101,6 +101,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let destinationViewController = segue.destinationViewController as! ProfileViewController
             destinationViewController.user = user
         }
+        else if segue.identifier == "newTweetSegue" {
+            
+        }
         
     }
     

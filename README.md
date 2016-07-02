@@ -1,8 +1,8 @@
 # Project 4 - *Chirpy*
 
-**Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+**Chirpy** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **4** hours spent in total
+Time spent: **20** hours spent in total
 
 ## User Stories
 
@@ -16,11 +16,11 @@ The following **required** functionality is completed:
 - [x] User should display the relative timestamp for each tweet "8m", "7h"
 - [x] Retweeting and favoriting should increment the retweet and favorite count.
 - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
-- [ ] User can compose a new tweet by tapping on a compose button.
+- [x] User can compose a new tweet by tapping on a compose button.
 - [x] User can tap the profile image in any tweet to see another user's profile
 - [x] Contains the user header view: picture and tagline
 - [x] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Profile view should include that user's timeline
+- [x] Profile view should include that user's timeline
 - [x] User can navigate to view their own profile
 - [x] Contains the user header view: picture and tagline
 - [x] Contains a section with the users basic stats: # tweets, # following, # followers
@@ -42,8 +42,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How much we love our CodePath instructors.
+2. How much we will miss them.
 
 ## Video Walkthrough
 
