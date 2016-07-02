@@ -57,6 +57,67 @@
             </objects>
             <point key="canvasLocation" x="190.5" y="364.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="1Fa-I2-gva">
+            <objects>
+                <viewController id="9Fv-3F-aVe" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zqj-N2-LWF"/>
+                        <viewControllerLayoutGuide type="bottom" id="XRD-sx-pLg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Okv-d4-iQc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's happening?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v0z-gq-3bF">
+                                <rect key="frame" x="14" y="133" width="351" height="494"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAa-mE-uam">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <state key="normal" title="Send"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compose Tweet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBm-uJ-dg8">
+                                <rect key="frame" x="0.0" y="93" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="v0z-gq-3bF" firstAttribute="top" secondItem="JBm-uJ-dg8" secondAttribute="bottom" constant="19" id="1g0-ui-BH5"/>
+                            <constraint firstItem="JBm-uJ-dg8" firstAttribute="top" secondItem="zqj-N2-LWF" secondAttribute="bottom" constant="29" id="3Ru-0f-ZtD"/>
+                            <constraint firstItem="hAa-mE-uam" firstAttribute="leading" secondItem="Okv-d4-iQc" secondAttribute="leading" id="FdR-ve-aIy"/>
+                            <constraint firstItem="XRD-sx-pLg" firstAttribute="top" secondItem="hAa-mE-uam" secondAttribute="bottom" id="Peh-mc-g6A"/>
+                            <constraint firstItem="hAa-mE-uam" firstAttribute="top" secondItem="v0z-gq-3bF" secondAttribute="bottom" constant="10" id="Ucf-TW-6HL"/>
+                            <constraint firstItem="hAa-mE-uam" firstAttribute="top" secondItem="v0z-gq-3bF" secondAttribute="bottom" constant="10" id="WXZ-yD-fuC"/>
+                            <constraint firstItem="v0z-gq-3bF" firstAttribute="leading" secondItem="Okv-d4-iQc" secondAttribute="leading" constant="14" id="cxG-2R-h7s"/>
+                            <constraint firstItem="JBm-uJ-dg8" firstAttribute="leading" secondItem="Okv-d4-iQc" secondAttribute="leading" id="i6u-9Y-SqV"/>
+                            <constraint firstAttribute="trailing" secondItem="v0z-gq-3bF" secondAttribute="trailing" constant="10" id="iA8-yD-V8m"/>
+                            <constraint firstAttribute="trailing" secondItem="JBm-uJ-dg8" secondAttribute="trailing" id="pkx-FP-m0p"/>
+                            <constraint firstAttribute="trailing" secondItem="hAa-mE-uam" secondAttribute="trailing" id="srl-PV-x0b"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ucf-TW-6HL"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2oI-0p-8G4" appends="YES" id="5aU-MF-fsq"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ro0-KN-xAj"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fPu-0B-t8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2oI-0p-8G4"/>
+            </objects>
+            <point key="canvasLocation" x="1827.5" y="-396.5"/>
+        </scene>
         <!--Tweets View Controller-->
         <scene sceneID="Ciu-ig-sH3">
             <objects>
@@ -225,6 +286,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qKo-Wm-SiM">
+                        <barButtonItem key="leftBarButtonItem" title="New Tweet" id="NWe-Z3-H0W">
+                            <connections>
+                                <segue destination="SUm-vW-Xbf" kind="presentation" id="yO1-bl-3rw"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="0qw-D1-oDS">
                             <connections>
                                 <action selector="onLogoutButton:" destination="V2B-NO-F4p" id="Sc2-Lj-uJg"/>
@@ -699,6 +765,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGT-nm-BSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="674.5" y="1100.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mds-87-HGT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SUm-vW-Xbf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="m9m-U0-WQX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9Fv-3F-aVe" kind="relationship" relationship="rootViewController" id="yag-fg-fk5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NIm-zu-JPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1207" y="-381"/>
         </scene>
     </scenes>
     <resources>
